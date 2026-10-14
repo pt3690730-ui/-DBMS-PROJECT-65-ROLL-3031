@@ -1,0 +1,304 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2170 1155" width="2170" height="1155" font-family="Oswald, 'Segoe UI', 'DejaVu Sans', system-ui, sans-serif">
+<rect width="100%" height="100%" fill="#050A14"/>
+<defs><radialGradient id="glow" cx="92%" cy="0%" r="70%"><stop offset="0%" stop-color="#1C4770" stop-opacity="0.55"/><stop offset="100%" stop-color="#050A14" stop-opacity="0"/></radialGradient><filter id="soft" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+<rect width="100%" height="100%" fill="url(#glow)"/>
+<text x="40" y="52" fill="#A5E8FA" font-size="30" letter-spacing="3" font-weight="600">GALAXY CINEMAS - ENTITY RELATIONSHIP DIAGRAM</text>
+<text x="42" y="78" fill="#3D8BFF" font-size="13" letter-spacing="3.4">PROJECT 65 | 17 ENTITIES | 20 RELATIONSHIPS | SUPABASE POSTGRESQL | 3NF WITH TWO DOCUMENTED EXCEPTIONS</text>
+<path d="M 193.0 254.0 L 193.0 292.0 L 193.0 292.0 L 193.0 330.0" fill="none" stroke="#1C4770" stroke-width="2" opacity="0.95"/>
+<g stroke="#3D8BFF" stroke-width="2" fill="none"><path d="M 185.0 263.0 L 201.0 263.0"/><path d="M 193.0 315.0 L 193.0 330.0 M 193.0 315.0 L 200.0 330.0 M 193.0 315.0 L 186.0 330.0"/></g>
+<rect x="166.2" y="263.0" width="93.5" height="18.0" rx="6" fill="#050A14" opacity="0.92"/>
+<text x="213.0" y="273.0" fill="#9FB6CA" font-size="12" text-anchor="middle">runs screens</text>
+<path d="M 193.0 447.0 L 193.0 485.0 L 193.0 485.0 L 193.0 523.0" fill="none" stroke="#1C4770" stroke-width="2" opacity="0.95"/>
+<g stroke="#3D8BFF" stroke-width="2" fill="none"><path d="M 185.0 456.0 L 201.0 456.0"/><path d="M 193.0 508.0 L 193.0 523.0 M 193.0 508.0 L 200.0 523.0 M 193.0 508.0 L 186.0 523.0"/></g>
+<rect x="159.3" y="456.0" width="107.4" height="18.0" rx="6" fill="#050A14" opacity="0.92"/>
+<text x="213.0" y="466.0" fill="#9FB6CA" font-size="12" text-anchor="middle">contains seats</text>
+<path d="M 346.0 388.5 L 486.0 455.0" fill="none" stroke="#1C4770" stroke-width="2" opacity="0.95"/>
+<g stroke="#3D8BFF" stroke-width="2" fill="none"><path d="M 350.7 399.6 L 357.6 385.1"/><path d="M 472.5 448.6 L 486.0 455.0 M 472.5 448.6 L 489.0 448.7 M 472.5 448.6 L 483.0 461.3"/></g>
+<rect x="372.7" y="402.8" width="86.6" height="18.0" rx="6" fill="#050A14" opacity="0.92"/>
+<text x="416.0" y="412.8" fill="#9FB6CA" font-size="12" text-anchor="middle">hosts shows</text>
+<path d="M 639.0 292.0 L 639.0 330.0 L 639.0 330.0 L 639.0 368.0" fill="none" stroke="#1C4770" stroke-width="2" opacity="0.95"/>
+<g stroke="#3D8BFF" stroke-width="2" fill="none"><path d="M 631.0 301.0 L 647.0 301.0"/><path d="M 639.0 353.0 L 639.0 368.0 M 639.0 353.0 L 646.0 368.0 M 639.0 353.0 L 632.0 368.0"/></g>
+<rect x="605.3" y="301.0" width="107.4" height="18.0" rx="6" fill="#050A14" opacity="0.92"/>
+<text x="659.0" y="311.0" fill="#9FB6CA" font-size="12" text-anchor="middle">is screened as</text>
+<path d="M 932.0 186.0 L 792.0 695.5" fill="none" stroke="#1C4770" stroke-width="2" opacity="0.95"/>
+<g stroke="#3D8BFF" stroke-width="2" fill="none"><path d="M 921.9 192.6 L 937.3 196.8"/><path d="M 796.0 681.0 L 792.0 695.5 M 796.0 681.0 L 798.7 697.4 M 796.0 681.0 L 785.3 693.6"/></g>
+<rect x="809.3" y="354.3" width="107.4" height="18.0" rx="6" fill="#050A14" opacity="0.92"/>
+<text x="863.0" y="364.3" fill="#9FB6CA" font-size="12" text-anchor="middle">makes bookings</text>
+<path d="M 639.0 542.0 L 639.0 580.0 L 639.0 580.0 L 639.0 618.0" fill="none" stroke="#1C4770" stroke-width="2" opacity="0.95"/>
+<g stroke="#3D8BFF" stroke-width="2" fill="none"><path d="M 631.0 551.0 L 647.0 551.0"/><path d="M 639.0 603.0 L 639.0 618.0 M 639.0 603.0 L 646.0 618.0 M 639.0 603.0 L 632.0 618.0"/></g>
+<rect x="594.8" y="551.0" width="128.3" height="18.0" rx="6" fill="#050A14" opacity="0.92"/>
+<text x="659.0" y="561.0" fill="#9FB6CA" font-size="12" text-anchor="middle">receives bookings</text>
+<path d="M 1378.0 195.5 L 1360.0 195.5 L 1360.0 695.5 L 792.0 695.5" fill="none" stroke="#1C4770" stroke-width="2" opacity="0.95"/>
+<g stroke="#3D8BFF" stroke-width="2" fill="none"><circle cx="1357.0" cy="195.5" r="5"/><path d="M 1369.0 187.5 L 1369.0 203.5"/><path d="M 807.0 695.5 L 792.0 695.5 M 807.0 695.5 L 792.0 702.5 M 807.0 695.5 L 792.0 688.5"/></g>
+<rect x="1001.4" y="699.5" width="149.2" height="18.0" rx="6" fill="#050A14" opacity="0.92"/>
+<text x="1076.0" y="709.5" fill="#9FB6CA" font-size="12" text-anchor="middle">sells at the counter</text>
+<path d="M 792.0 695.5 L 932.0 398.0" fill="none" stroke="#1C4770" stroke-width="2" opacity="0.95"/>
+<g stroke="#3D8BFF" stroke-width="2" fill="none"><path d="M 803.1 690.8 L 788.6 684.0"/><path d="M 925.6 411.6 L 932.0 398.0 M 925.6 411.6 L 925.7 395.0 M 925.6 411.6 L 938.3 401.0"/></g>
+<rect x="838.7" y="536.8" width="86.6" height="18.0" rx="6" fill="#050A14" opacity="0.92"/>
+<text x="882.0" y="546.8" fill="#9FB6CA" font-size="12" text-anchor="middle">holds seats</text>
+<path d="M 346.0 591.0 L 370.0 591.0 L 370.0 1125.0 L 908.0 1125.0 L 908.0 398.0 L 932.0 398.0" fill="none" stroke="#1C4770" stroke-width="2" opacity="0.95"/>
+<g stroke="#3D8BFF" stroke-width="2" fill="none"><path d="M 355.0 599.0 L 355.0 583.0"/><path d="M 917.0 398.0 L 932.0 398.0 M 917.0 398.0 L 932.0 391.0 M 917.0 398.0 L 932.0 405.0"/></g>
+<rect x="888.2" y="751.5" width="79.6" height="18.0" rx="6" fill="#050A14" opacity="0.92"/>
+<text x="928.0" y="761.5" fill="#9FB6CA" font-size="12" text-anchor="middle">is held by</text>
+<path d="M 1085.0 466.0 L 1085.0 504.0 L 1085.0 504.0 L 1085.0 542.0" fill="none" stroke="#1C4770" stroke-width="2" opacity="0.95"/>
+<g stroke="#3D8BFF" stroke-width="2" fill="none"><path d="M 1077.0 475.0 L 1093.0 475.0"/><path d="M 1093.0 533.0 L 1077.0 533.0"/></g>
+<rect x="1023.4" y="475.0" width="163.1" height="18.0" rx="6" fill="#050A14" opacity="0.92"/>
+<text x="1105.0" y="485.0" fill="#9FB6CA" font-size="12" text-anchor="middle">entitles to one ticket</text>
+<path d="M 792.0 695.5 L 932.0 841.0" fill="none" stroke="#1C4770" stroke-width="2" opacity="0.95"/>
+<g stroke="#3D8BFF" stroke-width="2" fill="none"><path d="M 792.5 707.5 L 804.0 696.4"/><circle cx="917.4" cy="825.9" r="5"/><path d="M 931.5 829.0 L 920.0 840.1"/></g>
+<rect x="779.9" y="780.1" width="142.2" height="18.0" rx="6" fill="#050A14" opacity="0.92"/>
+<text x="851.0" y="790.1" fill="#9FB6CA" font-size="12" text-anchor="middle">may be cancelled by</text>
+<path d="M 1238.0 841.0 L 1378.0 426.5" fill="none" stroke="#1C4770" stroke-width="2" opacity="0.95"/>
+<g stroke="#3D8BFF" stroke-width="2" fill="none"><path d="M 1248.5 835.0 L 1233.3 829.9"/><path d="M 1373.2 440.7 L 1378.0 426.5 M 1373.2 440.7 L 1371.4 424.3 M 1373.2 440.7 L 1384.6 428.7"/></g>
+<rect x="1246.3" y="685.9" width="121.4" height="18.0" rx="6" fill="#050A14" opacity="0.92"/>
+<text x="1307.0" y="695.9" fill="#9FB6CA" font-size="12" text-anchor="middle">releases refunds</text>
+<path d="M 1531.0 504.0 L 1531.0 542.0 L 1531.0 542.0 L 1531.0 580.0" fill="none" stroke="#1C4770" stroke-width="2" opacity="0.95"/>
+<g stroke="#3D8BFF" stroke-width="2" fill="none"><path d="M 1523.0 513.0 L 1539.0 513.0"/><path d="M 1531.0 565.0 L 1531.0 580.0 M 1531.0 565.0 L 1538.0 580.0 M 1531.0 565.0 L 1524.0 580.0"/></g>
+<rect x="1497.3" y="513.0" width="107.4" height="18.0" rx="6" fill="#050A14" opacity="0.92"/>
+<text x="1551.0" y="523.0" fill="#9FB6CA" font-size="12" text-anchor="middle">is reversed by</text>
+<path d="M 792.0 695.5 L 816.0 695.5 L 816.0 1190.0 L 1354.0 1190.0 L 1354.0 676.5 L 1378.0 676.5" fill="none" stroke="#1C4770" stroke-width="2" opacity="0.95"/>
+<g stroke="#3D8BFF" stroke-width="2" fill="none"><path d="M 801.0 703.5 L 801.0 687.5"/><path d="M 1363.0 676.5 L 1378.0 676.5 M 1363.0 676.5 L 1378.0 669.5 M 1363.0 676.5 L 1378.0 683.5"/></g>
+<rect x="1045.2" y="1171.0" width="79.6" height="18.0" rx="6" fill="#050A14" opacity="0.92"/>
+<text x="1085.0" y="1181.0" fill="#9FB6CA" font-size="12" text-anchor="middle">is paid by</text>
+<path d="M 1531.0 773.0 L 1531.0 811.0 L 1531.0 811.0 L 1531.0 849.0" fill="none" stroke="#1C4770" stroke-width="2" opacity="0.95"/>
+<g stroke="#3D8BFF" stroke-width="2" fill="none"><path d="M 1523.0 782.0 L 1539.0 782.0"/><path d="M 1531.0 834.0 L 1531.0 849.0 M 1531.0 834.0 L 1538.0 849.0 M 1531.0 834.0 L 1524.0 849.0"/></g>
+<rect x="1511.2" y="782.0" width="79.6" height="18.0" rx="6" fill="#050A14" opacity="0.92"/>
+<text x="1551.0" y="792.0" fill="#9FB6CA" font-size="12" text-anchor="middle">is paid by</text>
+<path d="M 792.0 695.5 L 810.0 695.5 L 810.0 917.0 L 1378.0 917.0" fill="none" stroke="#1C4770" stroke-width="2" opacity="0.95"/>
+<g stroke="#3D8BFF" stroke-width="2" fill="none"><path d="M 801.0 703.5 L 801.0 687.5"/><path d="M 1363.0 917.0 L 1378.0 917.0 M 1363.0 917.0 L 1378.0 910.0 M 1363.0 917.0 L 1378.0 924.0"/></g>
+<rect x="1047.2" y="921.0" width="93.5" height="18.0" rx="6" fill="#050A14" opacity="0.92"/>
+<text x="1094.0" y="931.0" fill="#9FB6CA" font-size="12" text-anchor="middle">may add food</text>
+<path d="M 1684.0 917.0 L 1824.0 388.5" fill="none" stroke="#1C4770" stroke-width="2" opacity="0.95"/>
+<g stroke="#3D8BFF" stroke-width="2" fill="none"><path d="M 1694.0 910.3 L 1678.6 906.3"/><path d="M 1820.2 403.0 L 1824.0 388.5 M 1820.2 403.0 L 1817.2 386.7 M 1820.2 403.0 L 1830.8 390.3"/></g>
+<rect x="1720.3" y="642.8" width="107.4" height="18.0" rx="6" fill="#050A14" opacity="0.92"/>
+<text x="1774.0" y="652.8" fill="#9FB6CA" font-size="12" text-anchor="middle">contains lines</text>
+<path d="M 1977.0 254.0 L 1977.0 292.0 L 1977.0 292.0 L 1977.0 330.0" fill="none" stroke="#1C4770" stroke-width="2" opacity="0.95"/>
+<g stroke="#3D8BFF" stroke-width="2" fill="none"><path d="M 1969.0 263.0 L 1985.0 263.0"/><path d="M 1977.0 315.0 L 1977.0 330.0 M 1977.0 315.0 L 1984.0 330.0 M 1977.0 315.0 L 1970.0 330.0"/></g>
+<rect x="1946.8" y="263.0" width="100.5" height="18.0" rx="6" fill="#050A14" opacity="0.92"/>
+<text x="1997.0" y="273.0" fill="#9FB6CA" font-size="12" text-anchor="middle">is ordered as</text>
+<path d="M 1378.0 195.5 L 1354.0 195.5 L 1354.0 1255.0 L 1708.0 1255.0 L 1708.0 917.0 L 1684.0 917.0" fill="none" stroke="#1C4770" stroke-width="2" opacity="0.95"/>
+<g stroke="#3D8BFF" stroke-width="2" fill="none"><path d="M 1369.0 187.5 L 1369.0 203.5"/><path d="M 1699.0 917.0 L 1684.0 917.0 M 1699.0 917.0 L 1684.0 924.0 M 1699.0 917.0 L 1684.0 910.0"/></g>
+<rect x="1299.4" y="556.3" width="149.2" height="18.0" rx="6" fill="#050A14" opacity="0.92"/>
+<text x="1374.0" y="566.3" fill="#9FB6CA" font-size="12" text-anchor="middle">takes counter orders</text>
+<path d="M 1824.0 572.0 L 1806.0 572.0 L 1806.0 841.0 L 1238.0 841.0" fill="none" stroke="#FF9A8A" stroke-width="2" stroke-dasharray="7 5" opacity="0.95"/>
+<g stroke="#3D8BFF" stroke-width="2" fill="none"><path d="M 1815.0 564.0 L 1815.0 580.0"/><path d="M 1253.0 841.0 L 1238.0 841.0 M 1253.0 841.0 L 1238.0 848.0 M 1253.0 841.0 L 1238.0 834.0"/></g>
+<rect x="1419.6" y="822.0" width="204.9" height="18.0" rx="6" fill="#050A14" opacity="0.92"/>
+<text x="1522.0" y="832.0" fill="#9FB6CA" font-size="12" text-anchor="middle">prices via fn_refund_percent</text>
+<g><rect x="40" y="118" width="306" height="136" rx="12" fill="#0B1B30" stroke="#1C4770" stroke-width="1.4"/><path d="M 52 118 H 334 A 12 12 0 0 1 346 130 V 150 H 40 V 130 A 12 12 0 0 1 52 118" fill="#09162A"/><text x="54" y="139" fill="#A5E8FA" font-size="15" letter-spacing="1.6">CINEMA</text></g>
+<text x="52" y="164" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#7EE0B0" font-weight="700">PK </tspan></text>
+<text x="92" y="164" fill="#E4EFF8" font-size="12.5">cinema_id</text>
+<text x="52" y="183" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#FF9A8A" font-weight="700">U </tspan></text>
+<text x="92" y="183" fill="#E4EFF8" font-size="12.5">cinema_name</text>
+<text x="52" y="202" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#FF9A8A" font-weight="700">U </tspan><tspan fill="#FF9A8A" font-weight="700">U </tspan></text>
+<text x="92" y="202" fill="#E4EFF8" font-size="12.5">city</text>
+<text x="52" y="221" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"></text>
+<text x="92" y="221" fill="#9FB6CA" font-size="12.5">address</text>
+<text x="52" y="240" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"></text>
+<text x="92" y="240" fill="#9FB6CA" font-size="12.5">phone</text>
+<g><rect x="40" y="330" width="306" height="117" rx="12" fill="#0B1B30" stroke="#1C4770" stroke-width="1.4"/><path d="M 52 330 H 334 A 12 12 0 0 1 346 342 V 362 H 40 V 342 A 12 12 0 0 1 52 330" fill="#09162A"/><text x="54" y="351" fill="#A5E8FA" font-size="15" letter-spacing="1.6">SCREEN</text></g>
+<text x="52" y="376" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#7EE0B0" font-weight="700">PK </tspan></text>
+<text x="92" y="376" fill="#E4EFF8" font-size="12.5">screen_id</text>
+<text x="52" y="395" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#6FD3F2" font-weight="700">FK </tspan></text>
+<text x="92" y="395" fill="#E4EFF8" font-size="12.5">cinema_id</text>
+<text x="52" y="414" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#FF9A8A" font-weight="700">U </tspan></text>
+<text x="92" y="414" fill="#E4EFF8" font-size="12.5">screen_name</text>
+<text x="52" y="433" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#9FB6CA" font-size="10">chk </tspan></text>
+<text x="92" y="433" fill="#E4EFF8" font-size="12.5">screen_type</text>
+<g><rect x="40" y="523" width="306" height="136" rx="12" fill="#0B1B30" stroke="#1C4770" stroke-width="1.4"/><path d="M 52 523 H 334 A 12 12 0 0 1 346 535 V 555 H 40 V 535 A 12 12 0 0 1 52 523" fill="#09162A"/><text x="54" y="544" fill="#A5E8FA" font-size="15" letter-spacing="1.6">SEAT</text></g>
+<text x="52" y="569" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#7EE0B0" font-weight="700">PK </tspan></text>
+<text x="92" y="569" fill="#E4EFF8" font-size="12.5">seat_id</text>
+<text x="52" y="588" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#6FD3F2" font-weight="700">FK </tspan></text>
+<text x="92" y="588" fill="#E4EFF8" font-size="12.5">screen_id</text>
+<text x="52" y="607" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#FF9A8A" font-weight="700">U </tspan><tspan fill="#FF9A8A" font-weight="700">U </tspan></text>
+<text x="92" y="607" fill="#E4EFF8" font-size="12.5">row_label</text>
+<text x="52" y="626" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#FF9A8A" font-weight="700">U </tspan><tspan fill="#FF9A8A" font-weight="700">U </tspan></text>
+<text x="92" y="626" fill="#E4EFF8" font-size="12.5">seat_no</text>
+<text x="52" y="645" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#9FB6CA" font-size="10">chk </tspan></text>
+<text x="92" y="645" fill="#E4EFF8" font-size="12.5">seat_type</text>
+<g><rect x="486" y="118" width="306" height="174" rx="12" fill="#0B1B30" stroke="#1C4770" stroke-width="1.4"/><path d="M 498 118 H 780 A 12 12 0 0 1 792 130 V 150 H 486 V 130 A 12 12 0 0 1 498 118" fill="#09162A"/><text x="500" y="139" fill="#A5E8FA" font-size="15" letter-spacing="1.6">MOVIE</text></g>
+<text x="498" y="164" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#7EE0B0" font-weight="700">PK </tspan></text>
+<text x="538" y="164" fill="#E4EFF8" font-size="12.5">movie_id</text>
+<text x="498" y="183" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#FF9A8A" font-weight="700">U </tspan><tspan fill="#FF9A8A" font-weight="700">U </tspan></text>
+<text x="538" y="183" fill="#E4EFF8" font-size="12.5">title</text>
+<text x="498" y="202" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"></text>
+<text x="538" y="202" fill="#9FB6CA" font-size="12.5">genre</text>
+<text x="498" y="221" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#FF9A8A" font-weight="700">U </tspan><tspan fill="#FF9A8A" font-weight="700">U </tspan></text>
+<text x="538" y="221" fill="#E4EFF8" font-size="12.5">language</text>
+<text x="498" y="240" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#9FB6CA" font-size="10">chk </tspan></text>
+<text x="538" y="240" fill="#E4EFF8" font-size="12.5">duration_min</text>
+<text x="498" y="259" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#9FB6CA" font-size="10">chk </tspan></text>
+<text x="538" y="259" fill="#E4EFF8" font-size="12.5">certificate</text>
+<text x="498" y="278" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#FF9A8A" font-weight="700">U </tspan><tspan fill="#FF9A8A" font-weight="700">U </tspan></text>
+<text x="538" y="278" fill="#E4EFF8" font-size="12.5">release_date</text>
+<g><rect x="486" y="368" width="306" height="174" rx="12" fill="#0B1B30" stroke="#1C4770" stroke-width="1.4"/><path d="M 498 368 H 780 A 12 12 0 0 1 792 380 V 400 H 486 V 380 A 12 12 0 0 1 498 368" fill="#09162A"/><text x="500" y="389" fill="#A5E8FA" font-size="15" letter-spacing="1.6">SCREENING</text></g>
+<text x="498" y="414" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#7EE0B0" font-weight="700">PK </tspan></text>
+<text x="538" y="414" fill="#E4EFF8" font-size="12.5">screening_id</text>
+<text x="498" y="433" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#6FD3F2" font-weight="700">FK </tspan></text>
+<text x="538" y="433" fill="#E4EFF8" font-size="12.5">movie_id</text>
+<text x="498" y="452" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#6FD3F2" font-weight="700">FK </tspan></text>
+<text x="538" y="452" fill="#E4EFF8" font-size="12.5">screen_id</text>
+<text x="498" y="471" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#FF9A8A" font-weight="700">U </tspan><tspan fill="#FF9A8A" font-weight="700">U </tspan></text>
+<text x="538" y="471" fill="#E4EFF8" font-size="12.5">start_time</text>
+<text x="498" y="490" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"></text>
+<text x="538" y="490" fill="#9FB6CA" font-size="12.5">end_time</text>
+<text x="498" y="509" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#9FB6CA" font-size="10">chk </tspan></text>
+<text x="538" y="509" fill="#E4EFF8" font-size="12.5">base_price</text>
+<text x="498" y="528" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#9FB6CA" font-size="10">chk </tspan></text>
+<text x="538" y="528" fill="#E4EFF8" font-size="12.5">status</text>
+<g><rect x="486" y="618" width="306" height="155" rx="12" fill="#0B1B30" stroke="#1C4770" stroke-width="1.4"/><path d="M 498 618 H 780 A 12 12 0 0 1 792 630 V 650 H 486 V 630 A 12 12 0 0 1 498 618" fill="#09162A"/><text x="500" y="639" fill="#A5E8FA" font-size="15" letter-spacing="1.6">BOOKING</text></g>
+<text x="498" y="664" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#7EE0B0" font-weight="700">PK </tspan></text>
+<text x="538" y="664" fill="#E4EFF8" font-size="12.5">booking_id</text>
+<text x="498" y="683" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#6FD3F2" font-weight="700">FK </tspan></text>
+<text x="538" y="683" fill="#E4EFF8" font-size="12.5">customer_id</text>
+<text x="498" y="702" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#6FD3F2" font-weight="700">FK </tspan></text>
+<text x="538" y="702" fill="#E4EFF8" font-size="12.5">screening_id</text>
+<text x="498" y="721" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#6FD3F2" font-weight="700">FK </tspan><tspan fill="#9FB6CA" font-size="10">null </tspan></text>
+<text x="538" y="721" fill="#E4EFF8" font-size="12.5">staff_id</text>
+<text x="498" y="740" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"></text>
+<text x="538" y="740" fill="#9FB6CA" font-size="12.5">booking_time</text>
+<text x="498" y="759" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#9FB6CA" font-size="10">chk </tspan></text>
+<text x="538" y="759" fill="#E4EFF8" font-size="12.5">status</text>
+<g><rect x="932" y="118" width="306" height="136" rx="12" fill="#0B1B30" stroke="#1C4770" stroke-width="1.4"/><path d="M 944 118 H 1226 A 12 12 0 0 1 1238 130 V 150 H 932 V 130 A 12 12 0 0 1 944 118" fill="#09162A"/><text x="946" y="139" fill="#A5E8FA" font-size="15" letter-spacing="1.6">CUSTOMER</text></g>
+<text x="944" y="164" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#7EE0B0" font-weight="700">PK </tspan></text>
+<text x="984" y="164" fill="#E4EFF8" font-size="12.5">customer_id</text>
+<text x="944" y="183" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"></text>
+<text x="984" y="183" fill="#9FB6CA" font-size="12.5">full_name</text>
+<text x="944" y="202" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#FF9A8A" font-weight="700">U </tspan></text>
+<text x="984" y="202" fill="#E4EFF8" font-size="12.5">email</text>
+<text x="944" y="221" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#9FB6CA" font-size="10">chk </tspan></text>
+<text x="984" y="221" fill="#E4EFF8" font-size="12.5">phone</text>
+<text x="944" y="240" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"></text>
+<text x="984" y="240" fill="#9FB6CA" font-size="12.5">created_at</text>
+<g><rect x="932" y="330" width="306" height="136" rx="12" fill="#0B1B30" stroke="#1C4770" stroke-width="1.4"/><path d="M 944 330 H 1226 A 12 12 0 0 1 1238 342 V 362 H 932 V 342 A 12 12 0 0 1 944 330" fill="#09162A"/><text x="946" y="351" fill="#A5E8FA" font-size="15" letter-spacing="1.6">BOOKED_SEAT</text></g>
+<text x="944" y="376" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#7EE0B0" font-weight="700">PK </tspan></text>
+<text x="984" y="376" fill="#E4EFF8" font-size="12.5">booked_seat_id</text>
+<text x="944" y="395" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#6FD3F2" font-weight="700">FK </tspan></text>
+<text x="984" y="395" fill="#E4EFF8" font-size="12.5">booking_id</text>
+<text x="944" y="414" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#6FD3F2" font-weight="700">FK </tspan></text>
+<text x="984" y="414" fill="#E4EFF8" font-size="12.5">screening_id</text>
+<text x="944" y="433" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#6FD3F2" font-weight="700">FK </tspan></text>
+<text x="984" y="433" fill="#E4EFF8" font-size="12.5">seat_id</text>
+<text x="944" y="452" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#9FB6CA" font-size="10">chk </tspan></text>
+<text x="984" y="452" fill="#E4EFF8" font-size="12.5">status</text>
+<g><rect x="932" y="542" width="306" height="155" rx="12" fill="#0B1B30" stroke="#1C4770" stroke-width="1.4"/><path d="M 944 542 H 1226 A 12 12 0 0 1 1238 554 V 574 H 932 V 554 A 12 12 0 0 1 944 542" fill="#09162A"/><text x="946" y="563" fill="#A5E8FA" font-size="15" letter-spacing="1.6">TICKET</text></g>
+<text x="944" y="588" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#7EE0B0" font-weight="700">PK </tspan></text>
+<text x="984" y="588" fill="#E4EFF8" font-size="12.5">ticket_id</text>
+<text x="944" y="607" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#6FD3F2" font-weight="700">FK </tspan><tspan fill="#FF9A8A" font-weight="700">U </tspan></text>
+<text x="984" y="607" fill="#E4EFF8" font-size="12.5">booked_seat_id</text>
+<text x="944" y="626" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#FF9A8A" font-weight="700">U </tspan></text>
+<text x="984" y="626" fill="#E4EFF8" font-size="12.5">ticket_code</text>
+<text x="944" y="645" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#9FB6CA" font-size="10">chk </tspan></text>
+<text x="984" y="645" fill="#E4EFF8" font-size="12.5">price</text>
+<text x="944" y="664" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"></text>
+<text x="984" y="664" fill="#9FB6CA" font-size="12.5">issued_at</text>
+<text x="944" y="683" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#9FB6CA" font-size="10">chk </tspan></text>
+<text x="984" y="683" fill="#E4EFF8" font-size="12.5">status</text>
+<g><rect x="932" y="773" width="306" height="136" rx="12" fill="#0B1B30" stroke="#1C4770" stroke-width="1.4"/><path d="M 944 773 H 1226 A 12 12 0 0 1 1238 785 V 805 H 932 V 785 A 12 12 0 0 1 944 773" fill="#09162A"/><text x="946" y="794" fill="#A5E8FA" font-size="15" letter-spacing="1.6">CANCELLATION</text></g>
+<text x="944" y="819" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#7EE0B0" font-weight="700">PK </tspan></text>
+<text x="984" y="819" fill="#E4EFF8" font-size="12.5">cancellation_id</text>
+<text x="944" y="838" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#6FD3F2" font-weight="700">FK </tspan><tspan fill="#FF9A8A" font-weight="700">U </tspan></text>
+<text x="984" y="838" fill="#E4EFF8" font-size="12.5">booking_id</text>
+<text x="944" y="857" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"></text>
+<text x="984" y="857" fill="#9FB6CA" font-size="12.5">cancelled_at</text>
+<text x="944" y="876" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#9FB6CA" font-size="10">chk </tspan></text>
+<text x="984" y="876" fill="#E4EFF8" font-size="12.5">cancelled_by</text>
+<text x="944" y="895" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"></text>
+<text x="984" y="895" fill="#9FB6CA" font-size="12.5">reason</text>
+<g><rect x="1378" y="118" width="306" height="155" rx="12" fill="#0B1B30" stroke="#1C4770" stroke-width="1.4"/><path d="M 1390 118 H 1672 A 12 12 0 0 1 1684 130 V 150 H 1378 V 130 A 12 12 0 0 1 1390 118" fill="#09162A"/><text x="1392" y="139" fill="#A5E8FA" font-size="15" letter-spacing="1.6">STAFF</text></g>
+<text x="1390" y="164" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#7EE0B0" font-weight="700">PK </tspan></text>
+<text x="1430" y="164" fill="#E4EFF8" font-size="12.5">staff_id</text>
+<text x="1390" y="183" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#6FD3F2" font-weight="700">FK </tspan></text>
+<text x="1430" y="183" fill="#E4EFF8" font-size="12.5">cinema_id</text>
+<text x="1390" y="202" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"></text>
+<text x="1430" y="202" fill="#9FB6CA" font-size="12.5">full_name</text>
+<text x="1390" y="221" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#FF9A8A" font-weight="700">U </tspan></text>
+<text x="1430" y="221" fill="#E4EFF8" font-size="12.5">username</text>
+<text x="1390" y="240" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"></text>
+<text x="1430" y="240" fill="#9FB6CA" font-size="12.5">password_hash</text>
+<text x="1390" y="259" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#9FB6CA" font-size="10">chk </tspan></text>
+<text x="1430" y="259" fill="#E4EFF8" font-size="12.5">role</text>
+<g><rect x="1378" y="349" width="306" height="155" rx="12" fill="#0B1B30" stroke="#1C4770" stroke-width="1.4"/><path d="M 1390 349 H 1672 A 12 12 0 0 1 1684 361 V 381 H 1378 V 361 A 12 12 0 0 1 1390 349" fill="#09162A"/><text x="1392" y="370" fill="#A5E8FA" font-size="15" letter-spacing="1.6">REFUND</text></g>
+<text x="1390" y="395" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#7EE0B0" font-weight="700">PK </tspan></text>
+<text x="1430" y="395" fill="#E4EFF8" font-size="12.5">refund_id</text>
+<text x="1390" y="414" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#6FD3F2" font-weight="700">FK </tspan></text>
+<text x="1430" y="414" fill="#E4EFF8" font-size="12.5">cancellation_id</text>
+<text x="1390" y="433" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#6FD3F2" font-weight="700">FK </tspan></text>
+<text x="1430" y="433" fill="#E4EFF8" font-size="12.5">payment_id</text>
+<text x="1390" y="452" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#9FB6CA" font-size="10">chk </tspan></text>
+<text x="1430" y="452" fill="#E4EFF8" font-size="12.5">refund_amount</text>
+<text x="1390" y="471" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#9FB6CA" font-size="10">chk </tspan></text>
+<text x="1430" y="471" fill="#E4EFF8" font-size="12.5">refund_status</text>
+<text x="1390" y="490" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"></text>
+<text x="1430" y="490" fill="#9FB6CA" font-size="12.5">refunded_at</text>
+<g><rect x="1378" y="580" width="306" height="193" rx="12" fill="#0B1B30" stroke="#1C4770" stroke-width="1.4"/><path d="M 1390 580 H 1672 A 12 12 0 0 1 1684 592 V 612 H 1378 V 592 A 12 12 0 0 1 1390 580" fill="#09162A"/><text x="1392" y="601" fill="#A5E8FA" font-size="15" letter-spacing="1.6">PAYMENT</text></g>
+<text x="1390" y="626" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#7EE0B0" font-weight="700">PK </tspan></text>
+<text x="1430" y="626" fill="#E4EFF8" font-size="12.5">payment_id</text>
+<text x="1390" y="645" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#6FD3F2" font-weight="700">FK </tspan><tspan fill="#9FB6CA" font-size="10">null </tspan></text>
+<text x="1430" y="645" fill="#E4EFF8" font-size="12.5">booking_id</text>
+<text x="1390" y="664" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#6FD3F2" font-weight="700">FK </tspan><tspan fill="#9FB6CA" font-size="10">null </tspan></text>
+<text x="1430" y="664" fill="#E4EFF8" font-size="12.5">order_id</text>
+<text x="1390" y="683" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#9FB6CA" font-size="10">chk </tspan></text>
+<text x="1430" y="683" fill="#E4EFF8" font-size="12.5">amount</text>
+<text x="1390" y="702" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#9FB6CA" font-size="10">chk </tspan></text>
+<text x="1430" y="702" fill="#E4EFF8" font-size="12.5">method</text>
+<text x="1390" y="721" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#9FB6CA" font-size="10">chk </tspan></text>
+<text x="1430" y="721" fill="#E4EFF8" font-size="12.5">status</text>
+<text x="1390" y="740" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"></text>
+<text x="1430" y="740" fill="#9FB6CA" font-size="12.5">paid_at</text>
+<text x="1390" y="759" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#FF9A8A" font-weight="700">U </tspan></text>
+<text x="1430" y="759" fill="#E4EFF8" font-size="12.5">transaction_ref</text>
+<g><rect x="1378" y="849" width="306" height="136" rx="12" fill="#0B1B30" stroke="#1C4770" stroke-width="1.4"/><path d="M 1390 849 H 1672 A 12 12 0 0 1 1684 861 V 881 H 1378 V 861 A 12 12 0 0 1 1390 849" fill="#09162A"/><text x="1392" y="870" fill="#A5E8FA" font-size="15" letter-spacing="1.6">CONCESSION_ORDER</text></g>
+<text x="1390" y="895" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#7EE0B0" font-weight="700">PK </tspan></text>
+<text x="1430" y="895" fill="#E4EFF8" font-size="12.5">order_id</text>
+<text x="1390" y="914" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#6FD3F2" font-weight="700">FK </tspan><tspan fill="#9FB6CA" font-size="10">null </tspan></text>
+<text x="1430" y="914" fill="#E4EFF8" font-size="12.5">booking_id</text>
+<text x="1390" y="933" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#6FD3F2" font-weight="700">FK </tspan><tspan fill="#9FB6CA" font-size="10">null </tspan></text>
+<text x="1430" y="933" fill="#E4EFF8" font-size="12.5">staff_id</text>
+<text x="1390" y="952" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"></text>
+<text x="1430" y="952" fill="#9FB6CA" font-size="12.5">order_time</text>
+<text x="1390" y="971" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#9FB6CA" font-size="10">chk </tspan></text>
+<text x="1430" y="971" fill="#E4EFF8" font-size="12.5">status</text>
+<g><rect x="1824" y="118" width="306" height="136" rx="12" fill="#0B1B30" stroke="#1C4770" stroke-width="1.4"/><path d="M 1836 118 H 2118 A 12 12 0 0 1 2130 130 V 150 H 1824 V 130 A 12 12 0 0 1 1836 118" fill="#09162A"/><text x="1838" y="139" fill="#A5E8FA" font-size="15" letter-spacing="1.6">CONCESSION_ITEM</text></g>
+<text x="1836" y="164" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#7EE0B0" font-weight="700">PK </tspan></text>
+<text x="1876" y="164" fill="#E4EFF8" font-size="12.5">item_id</text>
+<text x="1836" y="183" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#FF9A8A" font-weight="700">U </tspan></text>
+<text x="1876" y="183" fill="#E4EFF8" font-size="12.5">item_name</text>
+<text x="1836" y="202" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#9FB6CA" font-size="10">chk </tspan></text>
+<text x="1876" y="202" fill="#E4EFF8" font-size="12.5">category</text>
+<text x="1836" y="221" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#9FB6CA" font-size="10">chk </tspan></text>
+<text x="1876" y="221" fill="#E4EFF8" font-size="12.5">unit_price</text>
+<text x="1836" y="240" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#9FB6CA" font-size="10">chk </tspan></text>
+<text x="1876" y="240" fill="#E4EFF8" font-size="12.5">stock_qty</text>
+<g><rect x="1824" y="330" width="306" height="117" rx="12" fill="#0B1B30" stroke="#1C4770" stroke-width="1.4"/><path d="M 1836 330 H 2118 A 12 12 0 0 1 2130 342 V 362 H 1824 V 342 A 12 12 0 0 1 1836 330" fill="#09162A"/><text x="1838" y="351" fill="#A5E8FA" font-size="15" letter-spacing="1.6">ORDER_ITEM</text></g>
+<text x="1836" y="376" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#7EE0B0" font-weight="700">PK </tspan><tspan fill="#6FD3F2" font-weight="700">FK </tspan></text>
+<text x="1876" y="376" fill="#E4EFF8" font-size="12.5">order_id</text>
+<text x="1836" y="395" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#7EE0B0" font-weight="700">PK </tspan><tspan fill="#6FD3F2" font-weight="700">FK </tspan></text>
+<text x="1876" y="395" fill="#E4EFF8" font-size="12.5">item_id</text>
+<text x="1836" y="414" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#9FB6CA" font-size="10">chk </tspan></text>
+<text x="1876" y="414" fill="#E4EFF8" font-size="12.5">quantity</text>
+<text x="1836" y="433" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#9FB6CA" font-size="10">chk </tspan></text>
+<text x="1876" y="433" fill="#E4EFF8" font-size="12.5">unit_price</text>
+<g><rect x="1824" y="523" width="306" height="98" rx="12" fill="#0B1B30" stroke="#1C4770" stroke-width="1.4"/><path d="M 1836 523 H 2118 A 12 12 0 0 1 2130 535 V 555 H 1824 V 535 A 12 12 0 0 1 1836 523" fill="#09162A"/><text x="1838" y="544" fill="#A5E8FA" font-size="15" letter-spacing="1.6">CANCELLATION_POLICY</text></g>
+<text x="1836" y="569" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#7EE0B0" font-weight="700">PK </tspan></text>
+<text x="1876" y="569" fill="#E4EFF8" font-size="12.5">policy_id</text>
+<text x="1836" y="588" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#FF9A8A" font-weight="700">U </tspan></text>
+<text x="1876" y="588" fill="#E4EFF8" font-size="12.5">min_hours_before</text>
+<text x="1836" y="607" font-size="10.5" font-family="'JetBrains Mono', 'Consolas', monospace"><tspan fill="#9FB6CA" font-size="10">chk </tspan></text>
+<text x="1876" y="607" fill="#E4EFF8" font-size="12.5">refund_percent</text>
+<rect x="40" y="1065" width="2090" height="62" rx="12" fill="#0B1B30" stroke="#1C4770"/>
+<text x="62" y="1091" fill="#7EE0B0" font-size="13" font-weight="700" font-family="'JetBrains Mono', 'Consolas', monospace">PK</text>
+<text x="104" y="1091" fill="#9FB6CA" font-size="12">primary key</text>
+<text x="242.6" y="1091" fill="#6FD3F2" font-size="13" font-weight="700" font-family="'JetBrains Mono', 'Consolas', monospace">FK</text>
+<text x="284.6" y="1091" fill="#9FB6CA" font-size="12">foreign key (FK* = nullable)</text>
+<text x="535.4" y="1091" fill="#FF9A8A" font-size="13" font-weight="700" font-family="'JetBrains Mono', 'Consolas', monospace">U</text>
+<text x="577.4" y="1091" fill="#9FB6CA" font-size="12">unique constraint</text>
+<text x="755.5999999999999" y="1091" fill="#9FB6CA" font-size="13" font-weight="700" font-family="'JetBrains Mono', 'Consolas', monospace">chk</text>
+<text x="797.5999999999999" y="1091" fill="#9FB6CA" font-size="12">CHECK / allowed values</text>
+<text x="1008.8" y="1091" fill="#3D8BFF" font-size="13" font-weight="700" font-family="'JetBrains Mono', 'Consolas', monospace">|--&lt;</text>
+<text x="1050.8" y="1091" fill="#9FB6CA" font-size="12">exactly one  to  many</text>
+<text x="1255.3999999999999" y="1091" fill="#3D8BFF" font-size="13" font-weight="700" font-family="'JetBrains Mono', 'Consolas', monospace">o--&lt;</text>
+<text x="1297.3999999999999" y="1091" fill="#9FB6CA" font-size="12">optional one  to  many</text>
+<text x="1508.6" y="1091" fill="#FF9A8A" font-size="13" font-weight="700" font-family="'JetBrains Mono', 'Consolas', monospace">- - -</text>
+<text x="1550.6" y="1091" fill="#9FB6CA" font-size="12">policy link (no foreign key)</text>
+<text x="42" y="1119" fill="#9FB6CA" font-size="11.5">Denormalisation kept on purpose: screening.end_time (needed by the EXCLUDE constraint ex_screening_no_overlap) and booked_seat.screening_id (needed by the partial unique index ux_active_seat).</text>
+</svg>

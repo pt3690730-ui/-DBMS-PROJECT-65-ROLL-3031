@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Galaxy Cinemas - Screening &amp; Ticket Booking System</title>
+<meta name="description" content="DBMS Project 65: cinema screening and ticket booking system on Supabase PostgreSQL with a Flask API.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <div class="brand">
+      <svg class="brand-mark" viewBox="0 0 48 48" aria-hidden="true">
+        <circle cx="24" cy="24" r="21" fill="none" stroke="#1C4770" stroke-width="2"/>
+        <ellipse cx="24" cy="24" rx="21" ry="8" fill="none" stroke="#3D8BFF" stroke-width="2" transform="rotate(-24 24 24)"/>
+        <circle cx="24" cy="24" r="8" fill="#6FD3F2" opacity=".9"/>
+        <circle cx="24" cy="24" r="3.4" fill="#04101F"/>
+        <circle cx="39" cy="13" r="2.6" fill="#A5E8FA"/>
+      </svg>
+      <div>
+        <div class="brand-name">GALAXY CINEMAS</div>
+        <div class="brand-sub">Screening &amp; Ticket Booking System &middot; Project 65</div>
+      </div>
+    </div>
+
+    <span class="badge" id="dbBadge" title="Live database status">
+      <span class="dot"></span><span>Connecting&hellip;</span>
+    </span>
+    <span class="badge" id="clockBadge" title="fn_now() - the clock the database uses">
+      <span>clock&hellip;</span>
+    </span>
+    <button class="btn small ghost" id="logBtn" type="button" title="Every SQL statement the backend ran">
+      Live SQL Log <span id="logCount" class="chip cyan">0</span>
+    </button>
+
+    <label class="row small" style="gap:6px" title="Switch the interface between the three user roles">
+      <span class="muted">Role</span>
+      <select id="roleSwitch" style="width:auto">
+        <option value="CUSTOMER">Customer</option>
+        <option value="STAFF">Box Office Staff</option>
+        <option value="ADMIN">Administrator</option>
+      </select>
+    </label>
+    <label class="row small" style="gap:6px" title="The logged-in customer">
+      <span class="muted">Customer</span>
+      <select id="customerPicker" style="width:auto"></select>
+    </label>
+  </div>
+  <nav class="tabs wrap" id="tabs" aria-label="Sections"></nav>
+</header>
+
+<main class="wrap" id="view" tabindex="-1">
+  <div class="card">
+    <div class="loading"><span class="spinner"></span> Loading Galaxy Cinemas&hellip;</div>
+    <div class="skeleton h28" style="margin-top:14px"></div>
+    <div class="skeleton"></div>
+    <div class="skeleton h60"></div>
+  </div>
+</main>
+
+<footer class="footer wrap">
+  <div class="row between">
+    <span>Galaxy Cinemas &middot; DBMS Project-Based Learning &middot; Project 65 &middot;
+      Flask + psycopg2 + Supabase PostgreSQL</span>
+    <span class="mono small" id="footInfo">17 tables &middot; 5 triggers &middot; 6 views &middot; 8 indexes</span>
+  </div>
+</footer>
+
+<aside class="drawer" id="logDrawer" aria-label="Live SQL log" aria-hidden="true">
+  <header>
+    <div>
+      <div class="eyebrow" style="margin:0">Live SQL Log</div>
+      <div class="small muted" id="logStats">waiting for statements&hellip;</div>
+    </div>
+    <span class="grow"></span>
+    <button class="btn small ghost" id="logPause" type="button">Pause</button>
+    <button class="btn small ghost" id="logClear" type="button">Clear</button>
+    <button class="btn small primary" id="logClose" type="button">Close</button>
+  </header>
+  <div class="body" id="logBody">
+    <div class="empty"><div class="big">No statements yet</div>
+      <p class="small">Book a seat, cancel a booking or run the SQL console and every
+      statement the backend sends to Supabase appears here, BEGIN and COMMIT included.</p>
+    </div>
+  </div>
+</aside>
+
+<div id="modalRoot"></div>
+<div id="toastRoot" aria-live="polite"></div>
+
+<script src="static/app.js"></script>
+</body>
+</html>
