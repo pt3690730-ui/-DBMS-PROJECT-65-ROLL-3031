@@ -1,0 +1,507 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Cinema Booking DBMS</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  --bg:#050A14; --glow:#123B66; --panel:#0B1B30; --panel2:#09162A; --line:#1C4770;
+  --text:#E4EFF8; --muted:#9FB6CA; --cyan:#6FD3F2; --pale:#A5E8FA; --blue:#3D8BFF; --ink:#04101F;
+  --bad:#FF9A8A; --good:#7EE0B0; --seat:#10294A; --seat-line:#2A5E96;
+  --display:'Oswald',Impact,sans-serif; --body:'DM Sans',system-ui,sans-serif; --mono:'JetBrains Mono',ui-monospace,Menlo,Consolas,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:radial-gradient(ellipse at 92% 0%, var(--glow) 0%, transparent 46%), var(--bg);color:var(--text);font:400 16px/1.5 var(--body)}
+.wrap{max-width:1320px;margin:0 auto;padding-inline:16px;padding-block:24px 56px}
+header{display:flex;flex-wrap:wrap;gap:16px 32px;align-items:flex-end;justify-content:space-between;margin-bottom:20px}
+header>div{min-width:0;flex:1 1 420px}
+.eyebrow{font:700 13px/1 var(--body);letter-spacing:.22em;text-transform:uppercase;color:var(--blue);margin:0 0 10px}
+h1{font:700 clamp(34px,6vw,60px)/1 var(--display);text-transform:uppercase;color:var(--pale);margin:0 0 10px;text-wrap:balance}
+header p{margin:0;color:var(--muted);max-width:68ch}
+h2{font:600 20px/1.1 var(--display);letter-spacing:.04em;text-transform:uppercase;color:var(--cyan);margin:0 0 12px}
+.grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:20px;align-items:start}
+.col{display:flex;flex-direction:column;gap:20px;min-width:0}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px;min-width:0}
+.hint{color:var(--muted);font-size:14px;margin:10px 0 0}
+button,select,input{font:inherit;color:inherit}
+.btn{background:var(--cyan);color:var(--ink);border:0;border-radius:10px;padding:10px 18px;font-weight:700;cursor:pointer}
+.btn:hover{background:var(--pale)}
+.btn.ghost{background:transparent;color:var(--pale);border:1.5px solid var(--blue)}
+.btn.ghost:hover{background:#12365C}
+.btn.warn{background:transparent;color:var(--bad);border:1.5px solid var(--bad)}
+.btn.warn:hover{background:#3A1E22}
+:focus-visible{outline:3px solid var(--pale);outline-offset:2px}
+label{display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--muted);letter-spacing:.04em;text-transform:uppercase;min-width:0}
+select,input[type=time],input[type=number]{background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:9px 10px;color:var(--text);min-width:0;width:100%;text-transform:none;letter-spacing:0;font-size:15px}
+.row{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end}
+.row>*{flex:1 1 150px}
+.row>.btn{flex:0 0 auto}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{background:var(--panel2);border:1.5px solid var(--line);border-radius:10px;padding:8px 12px;cursor:pointer;text-align:left;line-height:1.25}
+.chip small{display:block;color:var(--muted);font-size:12.5px}
+.chip[aria-pressed=true]{border-color:var(--cyan);background:#12365C}
+.chip b{font-weight:700}
+/* seat map */
+.screenbar{margin:2px 0 12px;text-align:center;font:700 12px/1 var(--body);letter-spacing:.5em;text-transform:uppercase;color:var(--ink);background:var(--cyan);border-radius:6px;padding:7px 0}
+.seatrow{display:grid;grid-template-columns:22px repeat(5,minmax(0,1fr)) 14px repeat(5,minmax(0,1fr));gap:5px;align-items:center;margin-bottom:5px}
+.rowlab{font:600 12px var(--mono);color:var(--muted)}
+.seat{height:36px;min-width:0;padding:0;border-radius:9px 9px 5px 5px;border:2px solid var(--seat-line);background:var(--seat);color:var(--muted);font:600 11px var(--mono);cursor:pointer}
+.seat:hover{border-color:var(--pale)}
+.seat[aria-pressed=true]{background:var(--blue);border-color:var(--pale);color:var(--ink)}
+.seat.booked{background:var(--cyan);border-color:var(--pale);color:var(--ink)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:10px;font-size:13px;color:var(--muted)}
+.legend i{display:inline-block;width:14px;height:14px;border-radius:4px;border:2px solid var(--seat-line);vertical-align:-2px;margin-right:6px;background:var(--seat)}
+.legend i.s{background:var(--blue);border-color:var(--pale)}.legend i.b{background:var(--cyan);border-color:var(--pale)}
+/* snacks */
+.snacks{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:8px;margin-top:6px}
+.snack{display:flex;align-items:center;gap:10px;background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:8px 10px}
+.snack div:first-child{flex:1;min-width:0;line-height:1.25}
+.snack small{color:var(--muted);display:block;font-size:12.5px}
+.step{display:flex;align-items:center;gap:6px}
+.step button{width:30px;height:30px;border-radius:8px;border:1.5px solid var(--blue);background:transparent;color:var(--pale);font-weight:700;cursor:pointer}
+.step output{min-width:22px;text-align:center;font:600 15px var(--mono)}
+.summary{margin:14px 0;padding:12px 14px;background:var(--panel2);border:1px dashed var(--line);border-radius:10px;font-size:15px;display:flex;flex-wrap:wrap;gap:6px 18px;justify-content:space-between}
+.summary b{color:var(--pale)}
+/* cancel */
+input[type=range]{width:100%;accent-color:var(--cyan)}
+.policy{display:flex;flex-wrap:wrap;gap:6px 18px;margin:8px 0 12px;font-size:14.5px}
+.policy b{color:var(--pale)}
+.pct{font:700 34px/1 var(--display);color:var(--cyan)}
+/* database column */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px}
+.stat{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.stat span{display:block;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.stat b{display:block;font:700 28px/1.15 var(--display);color:var(--cyan);font-variant-numeric:tabular-nums}
+.stat b.neg{color:var(--bad)}
+.tabs{display:flex;gap:6px;overflow-x:auto;padding-bottom:8px;margin-bottom:6px}
+.tab{flex:0 0 auto;background:transparent;border:1.5px solid var(--line);border-radius:8px;padding:5px 10px;font:600 12.5px var(--mono);color:var(--muted);cursor:pointer;white-space:nowrap}
+.tab[aria-selected=true]{background:#12365C;color:var(--pale);border-color:var(--cyan)}
+.tablewrap{overflow:auto;max-height:290px;border:1px solid var(--line);border-radius:10px}
+table{border-collapse:collapse;width:100%;font:500 13px var(--mono);font-variant-numeric:tabular-nums}
+th{position:sticky;top:0;background:#12365C;color:var(--pale);text-align:left;padding:7px 10px;font-weight:600;white-space:nowrap}
+td{padding:6px 10px;border-top:1px solid var(--line);white-space:nowrap}
+tr.fresh td{animation:fresh 1.6s ease-out}
+@keyframes fresh{from{background:#1E5C8E}to{background:transparent}}
+td.bad{color:var(--bad)}td.ok{color:var(--good)}
+.empty{padding:18px;color:var(--muted);font-family:var(--body);font-size:14px}
+.log{background:#030812;border:1px solid var(--line);border-radius:10px;padding:12px 14px;font:400 12.5px/1.55 var(--mono);height:300px;overflow:auto;color:var(--text)}
+.log div{white-space:pre-wrap;overflow-wrap:anywhere}
+.log .ok{color:var(--good)}.log .bad{color:var(--bad)}.log .dim{color:var(--muted)}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);max-width:min(560px,calc(100% - 32px));background:var(--panel);border:1.5px solid var(--cyan);border-radius:12px;padding:12px 16px;box-shadow:0 10px 40px #000A;z-index:5;font-size:15px}
+.toast.bad{border-color:var(--bad)}
+.toast b{margin-right:6px}
+@media (max-width:920px){.grid{grid-template-columns:minmax(0,1fr)}}
+@media (prefers-reduced-motion:reduce){tr.fresh td{animation:none}}
+
+.deck{min-height:100%}
+.slide{display:none;max-width:1320px;margin:0 auto;padding-inline:16px;padding-block:32px 110px}
+.slide.on{display:block;animation:in .35s ease}
+@keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.slide .wrap{padding:0;max-width:none}
+.slide h1{font:700 clamp(40px,8vw,96px)/1 var(--display);text-transform:uppercase;color:var(--pale);margin:0 0 16px;text-wrap:balance}
+.slide h2.t{font:600 clamp(30px,5vw,56px)/1.05 var(--display);text-transform:uppercase;color:var(--pale);letter-spacing:0;margin:0 0 24px;text-wrap:balance}
+h2.mt{font:600 clamp(26px,4vw,44px)/1.05 var(--display);text-transform:uppercase;color:var(--pale);letter-spacing:0;margin:0 0 10px}
+.lead{font-size:clamp(17px,2vw,22px);color:var(--text);max-width:62ch;margin:0 0 20px}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.cols .card h3{font:600 22px/1.1 var(--display);text-transform:uppercase;color:var(--text);margin:0 0 8px}
+.cols .card p,.cols .card li{color:var(--muted);margin:0}
+.cols .card ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px}
+.big{font:700 56px/1 var(--display);color:var(--cyan)}
+.lab{color:var(--muted);font-size:15px}
+.pill{display:inline-block;border:1.5px solid var(--blue);color:var(--pale);border-radius:99px;padding:4px 14px;margin:0 8px 8px 0;font-size:15px}
+.mono{font-family:var(--mono);font-size:14px;color:var(--pale)}
+.flow{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.flow .st{background:var(--panel);border:1px solid var(--line);border-top:4px solid var(--cyan);border-radius:12px;padding:12px 16px;font-weight:700;color:var(--text)}
+.flow .ar{color:var(--blue);font-size:22px}
+.rt{width:100%;border-collapse:collapse;font-size:15px}
+.rt th,.rt td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line)}
+.rt th{color:var(--cyan);font-weight:700;letter-spacing:.06em;text-transform:uppercase;font-size:13px}
+.tw{overflow-x:auto}
+.bar{position:fixed;left:0;right:0;bottom:0;background:#050A14ee;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:center;gap:14px;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));z-index:5;flex-wrap:wrap}
+.dots{display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
+.dots button{border:0;width:12px;height:12px;border-radius:50%;background:var(--line);cursor:pointer;padding:0}
+.dots button.on{background:var(--cyan)}
+.cnt{color:var(--muted);font-size:14px;min-width:70px;text-align:center}
+.done li{list-style:none}.done{padding:0!important}
+.ck{color:var(--cyan);font-weight:700;margin-right:8px}
+.nm{color:var(--bad)}
+
+.btn:disabled{opacity:.35;cursor:default}
+</style>
+<div class="deck"><div class="slide" data-n="0"><p class="eyebrow">DBMS Project · Project 65</p><h1>Cinema Screening and Ticket Booking System</h1><p class="lead">Design and implementation of a database management system that schedules shows, sells seats and handles cancellations and refunds without ever double-booking.</p><div><span class="pill">PostgreSQL 16</span><span class="pill">17 tables</span><span class="pill">3NF</span><span class="pill">5 triggers</span><span class="pill">6 report views</span></div><p class="hint">Use the arrow keys or the buttons below to move between slides.</p></div><div class="slide" data-n="1"><p class="eyebrow">01 · Problem statement</p><h2 class="t">Why a cinema needs a proper database</h2><div class="cols"><div class="card"><h3>The problem</h3><p>Cinemas run many screens, shows and customers at once. Spreadsheets and ad hoc code let two people buy the same seat, schedule two films on one screen at the same time, or refund more than was paid.</p></div><div class="card"><h3>The goal</h3><p>One relational database that stores movies, screens, seats, shows, bookings, payments, snacks, cancellations and refunds, and enforces the rules itself.</p></div><div class="card"><h3>Who uses it</h3><ul><li>Customers booking seats and snacks</li><li>Box-office staff</li><li>Managers reading revenue and occupancy reports</li></ul></div></div></div><div class="slide" data-n="2"><p class="eyebrow">02 · At a glance</p><h2 class="t">What the model consists of</h2><div class="cols"><div class="card"><div class="big">17</div><div class="lab">tables in the schema</div></div><div class="card"><div class="big">5</div><div class="lab">triggers guarding the rules</div></div><div class="card"><div class="big">6</div><div class="lab">report views</div></div><div class="card"><div class="big">8</div><div class="lab">indexes for fast search</div></div></div><p class="hint" style="margin-top:20px">Tables: cinema, screen, seat, movie, screening, customer, staff, concession_item, cancellation_policy, booking, booked_seat, ticket, concession_order, order_item, payment, cancellation, refund.</p></div><div class="slide" data-n="3"><p class="eyebrow">03 · Parts</p><h2 class="t">Five groups of tables</h2><div class="cols"><div class="card"><h3>Venue</h3><p>cinema, screen, seat. Each screen has a fixed seat layout.</p></div><div class="card"><h3>Programme</h3><p>movie, screening. A screening is one movie on one screen at one time.</p></div><div class="card"><h3>Sales</h3><p>customer, booking, booked_seat, ticket, payment.</p></div><div class="card"><h3>Snacks</h3><p>concession_item, concession_order, order_item with limited stock.</p></div><div class="card"><h3>After-sales</h3><p>cancellation_policy, cancellation, refund.</p></div></div></div><div class="slide" data-n="4"><p class="eyebrow">04 · How it works</p><h2 class="t">From booking to refund</h2><div class="flow"><span class="st">Choose show</span><span class="ar">→</span><span class="st">Pick seats</span><span class="ar">→</span><span class="st">Add snacks</span><span class="ar">→</span><span class="st">Pay</span><span class="ar">→</span><span class="st">Tickets issued</span><span class="ar">→</span><span class="st">Cancel (optional)</span><span class="ar">→</span><span class="st">Refund by policy</span></div><p class="lead" style="margin-top:24px">A booking is one transaction: it commits as a whole or rolls back, so data is never half-saved.</p></div><div class="slide" data-n="5"><p class="eyebrow">05 · Business rules</p><h2 class="t">Rules the database enforces</h2><div class="tw"><table class="rt"><tr><th>Rule</th><th>How it is enforced</th></tr><tr><td>One active booking per seat per show</td><td class="mono">ux_active_seat (partial unique index)</td></tr><tr><td>No two shows overlap on a screen</td><td class="mono">ex_screening_no_overlap (EXCLUDE on tsrange)</td></tr><tr><td>Refund never exceeds the policy limit</td><td>Refund trigger</td></tr><tr><td>Snacks cannot exceed stock</td><td>Concession stock trigger</td></tr><tr><td>Booked seats and cancellations are validated</td><td>Validation triggers</td></tr></table></div><h3 style="font:600 22px var(--display);text-transform:uppercase;color:var(--text);margin:24px 0 8px">Refund policy</h3><div class="cols"><div class="card"><div class="big">100%</div><div class="lab">24 hours or more before the show</div></div><div class="card"><div class="big">50%</div><div class="lab">between 2 and 24 hours</div></div><div class="card"><div class="big">0%</div><div class="lab">under 2 hours</div></div></div></div><div class="slide" data-n="6"><p class="eyebrow">06 · Design quality</p><h2 class="t">Clean, safe and fast</h2><div class="cols"><div class="card"><div class="big">3NF</div><p>15 of 17 tables are in strict third normal form. Two keep a documented, deliberate redundancy: screening end time and the screening id in booked seats.</p></div><div class="card"><h3>Constraints</h3><p>Primary and foreign keys, UNIQUE, NOT NULL, CHECK and DEFAULT.</p></div><div class="card"><h3>Indexes</h3><p>Movie title, show time, bookings and payments.</p></div><div class="card"><h3>Transactions</h3><p>Commit as a whole or roll back.</p></div></div></div><div class="slide" data-n="7"><div class="wrap mwrap">
+<header>
+<div>
+<p class="eyebrow">07 · Try it</p>
+<h2 class="mt">Live working model</h2>
+<p>Book seats, add snacks, schedule shows, cancel and refund. Every action runs the same rules as the PostgreSQL design, and the tables on the right update as you go. Everything runs in your browser on sample data; nothing is saved.</p>
+</div>
+<button class="btn ghost" id="reset" type="button">Reset sample data</button>
+</header>
+
+<div class="grid">
+<div class="col">
+  <section class="card" aria-labelledby="h-show">
+    <h2 id="h-show">1 · Choose a show</h2>
+    <div class="chips" id="shows"></div>
+  </section>
+
+  <section class="card" aria-labelledby="h-book">
+    <h2 id="h-book">2 · Pick seats and pay</h2>
+    <div class="row" style="margin-bottom:12px">
+      <label for="cust">Customer<select id="cust"></select></label>
+      <label for="method">Payment<select id="method"><option>UPI</option><option>CARD</option><option>CASH</option><option>WALLET</option></select></label>
+    </div>
+    <div class="screenbar">Screen</div>
+    <div id="map" role="group" aria-label="Seat map"></div>
+    <div class="legend"><span><i></i>Free</span><span><i class="s"></i>Your selection</span><span><i class="b"></i>Booked (click one to try a double booking)</span></div>
+    <h2 style="margin-top:18px">Snacks <small style="font:400 13px var(--body);letter-spacing:0;text-transform:none;color:var(--muted)">· stock is limited, try ordering more</small></h2>
+    <div class="snacks" id="snacks"></div>
+    <div class="summary" id="summary"></div>
+    <button class="btn" id="book" type="button">Book and pay</button>
+  </section>
+
+  <section class="card" aria-labelledby="h-sched">
+    <h2 id="h-sched">3 · Schedule a show</h2>
+    <div class="row">
+      <label for="s-movie">Movie<select id="s-movie"></select></label>
+      <label for="s-screen">Screen<select id="s-screen"></select></label>
+      <label for="s-time">Start time<input id="s-time" type="time" value="11:00"></label>
+      <label for="s-price">Price (₹)<input id="s-price" type="number" min="1" value="250"></label>
+      <button class="btn" id="sched" type="button">Schedule</button>
+    </div>
+    <p class="hint">Each show blocks its screen for the movie length plus a 15 minute cleaning gap. Try 11:00 on Screen 1: it overlaps the 10:00 show.</p>
+  </section>
+
+  <section class="card" aria-labelledby="h-cancel">
+    <h2 id="h-cancel">4 · Cancel and refund</h2>
+    <div class="row">
+      <label for="c-book">Booking<select id="c-book"></select></label>
+      <label for="c-hours">Hours before the show: <span id="c-hours-val" style="color:var(--pale);font-weight:700"></span><input id="c-hours" type="range" min="0" max="48" value="30"></label>
+    </div>
+    <div class="policy" id="policy"></div>
+    <div class="row">
+      <label for="c-refund">Refund to pay (₹)<input id="c-refund" type="number" min="0" step="0.01"></label>
+      <button class="btn warn" id="cancel" type="button">Cancel booking</button>
+    </div>
+    <p class="hint">Policy: 24 h or more before the show refunds 100%, 2 to 24 h refunds 50%, under 2 h refunds 0%. Set the refund above the limit to see the database refuse it.</p>
+  </section>
+</div>
+
+<div class="col">
+  <section class="card" aria-labelledby="h-stats">
+    <h2 id="h-stats">Live figures</h2>
+    <div class="stats" id="stats"></div>
+  </section>
+
+  <section class="card" aria-labelledby="h-tables">
+    <h2 id="h-tables">Database tables</h2>
+    <div class="tabs" id="tabs" role="tablist" aria-label="Tables"></div>
+    <div class="tablewrap" id="tablewrap" role="tabpanel"></div>
+  </section>
+
+  <section class="card" aria-labelledby="h-log">
+    <h2 id="h-log">Event log</h2>
+    <div class="log" id="log" role="log" aria-live="polite"></div>
+    <p class="hint">A failed action is rolled back, so no table changes.</p>
+  </section>
+</div>
+</div>
+</div>
+<div class="toast" id="toast" hidden></div></div><div class="slide" data-n="8"><p class="eyebrow">08 · Reports</p><h2 class="t">What the model reports</h2><p class="lead">Six ready-made SQL views, so the website can read each report with one query.</p><div><span class="pill">v_show_occupancy</span><span class="pill">v_movie_performance</span><span class="pill">v_screen_utilization</span><span class="pill">v_concession_sales</span><span class="pill">v_cancellation_summary</span><span class="pill">v_daily_revenue</span></div><div class="cols" style="margin-top:20px"><div class="card"><div class="big">6,950</div><div class="lab">gross, INR (sample data)</div></div><div class="card"><div class="big" style="color:var(--bad)">440</div><div class="lab">refunds, INR</div></div><div class="card"><div class="big">6,510</div><div class="lab">net, INR</div></div></div><p class="hint">All figures come from the sample data, not real sales.</p></div><div class="slide" data-n="9"><p class="eyebrow">09 · Status</p><h2 class="t">What is done and what is next</h2><div class="cols"><div class="card"><h3>Done</h3><ul class="done"><li><span class="ck">✓</span>Problem, scope and requirements</li><li><span class="ck">✓</span>ER model with 17 entities</li><li><span class="ck">✓</span>Relational schema in 3NF</li><li><span class="ck">✓</span>PostgreSQL database with sample data</li><li><span class="ck">✓</span>Triggers, indexes and 6 views</li><li><span class="ck">✓</span>16 database tests, all passed</li><li><span class="ck">✓</span>Project report (41 pages)</li></ul></div><div class="card"><h3>In progress</h3><ul><li>Website: scheduling, seat selection, booking and reports</li><li>Application tests and screenshots</li></ul></div><div class="card"><h3>Next</h3><ul><li>Connect the website to the database</li><li>Final demo and report update</li></ul></div></div></div></div>
+<div class="bar"><button class="btn ghost" id="pv" type="button">← Back</button><div class="dots" id="dots"></div><span class="cnt" id="cnt"></span><button class="btn" id="nx" type="button">Next →</button></div>
+<script>
+(function(){
+'use strict';
+var $=function(s){return document.querySelector(s)};
+var MOVIES=[{id:1,title:'Midnight Express',dur:132},{id:2,title:'The Last Monsoon',dur:118},{id:3,title:'Galaxy Rangers',dur:145},{id:4,title:'Laughter Lane',dur:125},{id:5,title:'Code Red',dur:128}];
+var SCREENS=[{id:1,name:'Screen 1 (2D)'},{id:2,name:'Screen 2 (IMAX)'}];
+var ROWS=['A','B','C','D','E'], PER_ROW=10, TOTAL=ROWS.length*PER_ROW;
+var POLICY=[{h:24,p:100},{h:2,p:50},{h:0,p:0}];
+var TABS=['booking','booked_seat','ticket','payment','concession_item','order_item','cancellation','refund'];
+var db,log,ui,prevLen,toastTimer;
+
+function DbError(m){this.message=m;this.db=true}
+function AppError(m){this.message=m;this.db=false}
+function pad(n){return String(n).padStart(2,'0')}
+function hhmm(m){m=((m%1440)+1440)%1440;return pad(Math.floor(m/60))+':'+pad(m%60)}
+function inr(n){return '₹'+Number(n).toLocaleString('en-IN',{minimumFractionDigits:0,maximumFractionDigits:2})}
+function f2(n){return Number(n).toFixed(2)}
+function movie(id){return MOVIES.find(function(m){return m.id===id})}
+function endOf(movieId,start){return start+movie(movieId).dur+15}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+
+function freshDb(){
+  var d={nextId:{show:5,booking:1,bs:1,ticket:1,payment:1,order:1,canc:1,refund:1},
+    shows:[
+      {id:1,movie:1,screen:1,start:600,price:250,status:'SCHEDULED'},
+      {id:2,movie:2,screen:1,start:840,price:220,status:'SCHEDULED'},
+      {id:3,movie:3,screen:2,start:1080,price:350,status:'SCHEDULED'},
+      {id:4,movie:5,screen:2,start:1290,price:300,status:'SCHEDULED'}],
+    customers:[{id:1,name:'Aarav Sharma'},{id:2,name:'Diya Patel'},{id:3,name:'Karthik Rao'},{id:4,name:'Sneha Iyer'}],
+    bookings:[],bookedSeats:[],tickets:[],payments:[],orders:[],orderItems:[],cancellations:[],refunds:[],
+    items:[{id:1,name:'Salted Popcorn',price:180,stock:5},{id:2,name:'Cola 500 ml',price:120,stock:6},{id:3,name:'Nachos with Cheese',price:190,stock:3},{id:4,name:'Veg Puff',price:80,stock:4},{id:5,name:'Movie Combo',price:420,stock:2}]};
+  d.shows.forEach(function(s){s.end=endOf(s.movie,s.start)});
+  doBook(d,{cust:1,show:1,seats:['C5','C6'],method:'UPI',snacks:{1:2}},[]);
+  doBook(d,{cust:2,show:1,seats:['D1','D2','D3'],method:'CARD',snacks:{}},[]);
+  doBook(d,{cust:3,show:3,seats:['E4','E5'],method:'CASH',snacks:{5:1}},[]);
+  return d;
+}
+
+/* ---------- business rules (mirror the PostgreSQL constraints and triggers) ---------- */
+function doBook(d,p,lines){
+  var sh=d.shows.find(function(s){return s.id===p.show});
+  var snackIds=Object.keys(p.snacks).filter(function(k){return p.snacks[k]>0});
+  if(!p.seats.length&&!snackIds.length)throw new AppError('Choose at least one seat or one snack first.');
+  lines.push(['BEGIN;','dim']);
+  var bookingId=null;
+  if(p.seats.length){
+    bookingId=d.nextId.booking++;
+    d.bookings.push({id:bookingId,cust:p.cust,show:p.show,status:'CONFIRMED',channel:p.method==='CASH'?'counter':'online'});
+    lines.push(['INSERT INTO booking (customer_id, screening_id) VALUES ('+p.cust+', '+p.show+');  -- booking '+bookingId]);
+    p.seats.forEach(function(seat){
+      lines.push(["INSERT INTO booked_seat (booking_id, screening_id, seat) VALUES ("+bookingId+", "+p.show+", '"+seat+"');"]);
+      if(d.bookedSeats.some(function(b){return b.show===p.show&&b.seat===seat&&b.status==='BOOKED'}))
+        throw new DbError('duplicate key value violates unique constraint "ux_active_seat"');
+      var id=d.nextId.bs++;
+      d.bookedSeats.push({id:id,booking:bookingId,show:p.show,seat:seat,status:'BOOKED'});
+      d.tickets.push({id:d.nextId.ticket++,bs:id,code:'TKT-'+String(id).padStart(6,'0'),seat:seat,price:sh.price,status:'ISSUED'});
+    });
+    lines.push(['INSERT INTO ticket ... '+p.seats.length+' row(s);  -- one ticket per seat']);
+    var amt=p.seats.length*sh.price;
+    d.payments.push({id:d.nextId.payment++,booking:bookingId,order:null,amount:amt,method:p.method,status:'SUCCESS'});
+    lines.push(['INSERT INTO payment (booking_id, amount, method) VALUES ('+bookingId+', '+f2(amt)+", '"+p.method+"');"]);
+  }
+  if(snackIds.length){
+    var oid=d.nextId.order++;
+    d.orders.push({id:oid,booking:bookingId});
+    lines.push(['INSERT INTO concession_order (booking_id) VALUES ('+(bookingId||'NULL')+');  -- order '+oid]);
+    var total=0;
+    snackIds.forEach(function(k){
+      var it=d.items.find(function(i){return i.id===+k}),q=p.snacks[k];
+      lines.push(['INSERT INTO order_item (order_id, item_id, quantity) VALUES ('+oid+', '+it.id+', '+q+');  -- '+it.name]);
+      if(q>it.stock)throw new DbError('new row for relation "concession_item" violates check constraint "concession_item_stock_qty_check"');
+      it.stock-=q;total+=q*it.price;
+      d.orderItems.push({order:oid,item:it.id,name:it.name,qty:q,price:it.price});
+    });
+    d.payments.push({id:d.nextId.payment++,booking:null,order:oid,amount:total,method:p.method,status:'SUCCESS'});
+    lines.push(['INSERT INTO payment (order_id, amount, method) VALUES ('+oid+', '+f2(total)+", '"+p.method+"');"]);
+  }
+}
+function refundPercent(h){for(var i=0;i<POLICY.length;i++)if(h>=POLICY[i].h)return POLICY[i].p;return 0}
+function doCancel(d,p,lines){
+  var b=d.bookings.find(function(x){return x.id===p.booking});
+  lines.push(['BEGIN;','dim']);
+  lines.push(['INSERT INTO cancellation (booking_id) VALUES ('+p.booking+');']);
+  if(b.status!=='CONFIRMED')throw new DbError('Booking '+b.id+' is not confirmed and cannot be cancelled');
+  if(p.hours<=0)throw new DbError('Booking '+b.id+' cannot be cancelled after the show has started');
+  var ids=d.bookedSeats.filter(function(s){return s.booking===b.id});
+  d.cancellations.push({id:d.nextId.canc++,booking:b.id,by:'CUSTOMER',hours:p.hours});
+  b.status='CANCELLED';
+  ids.forEach(function(s){s.status='RELEASED'});
+  d.tickets.forEach(function(t){if(ids.some(function(s){return s.id===t.bs}))t.status='VOID'});
+  lines.push(['-- trigger: booking '+b.id+' CANCELLED, '+ids.length+' seat(s) RELEASED, '+ids.length+' ticket(s) VOID','dim']);
+  var pay=d.payments.find(function(x){return x.booking===b.id});
+  if(!(p.refund>=0))throw new DbError('new row for relation "refund" violates check constraint "refund_refund_amount_check"');
+  if(p.refund>0){
+    lines.push(['INSERT INTO refund (cancellation_id, payment_id, refund_amount) VALUES (..., '+pay.id+', '+f2(p.refund)+');']);
+    var limit=Math.round(pay.amount*refundPercent(p.hours))/100;
+    if(p.refund>limit+1e-9)throw new DbError('Refund '+f2(p.refund)+' exceeds the permitted limit '+f2(limit)+' (paid '+f2(pay.amount)+', already refunded 0)');
+    d.refunds.push({id:d.nextId.refund++,canc:d.cancellations[d.cancellations.length-1].id,payment:pay.id,amount:p.refund,status:'COMPLETED'});
+    pay.status='REFUNDED';
+  }
+}
+function doSchedule(d,p,lines){
+  var end=endOf(p.movie,p.start);
+  lines.push(['BEGIN;','dim']);
+  lines.push(["INSERT INTO screening (movie_id, screen_id, start_time, end_time, base_price) VALUES ("+p.movie+", "+p.screen+", '"+hhmm(p.start)+"', '"+hhmm(end)+"', "+f2(p.price)+");"]);
+  if(!(p.price>0))throw new DbError('new row for relation "screening" violates check constraint "screening_base_price_check"');
+  var clash=d.shows.some(function(s){return s.screen===p.screen&&s.status==='SCHEDULED'&&p.start<s.end&&s.start<end});
+  if(clash)throw new DbError('conflicting key value violates exclusion constraint "ex_screening_no_overlap"');
+  d.shows.push({id:d.nextId.show++,movie:p.movie,screen:p.screen,start:p.start,end:end,price:p.price,status:'SCHEDULED'});
+}
+
+/* ---------- transaction wrapper: commit or roll back everything ---------- */
+function txn(fn,okMsg){
+  var snap=JSON.stringify(db),lines=[];
+  try{
+    fn(lines);
+    lines.push(['COMMIT;','ok']);
+    log=log.concat(lines);
+    toast(true,'Saved',okMsg);
+    return true;
+  }catch(e){
+    if(e instanceof DbError||e instanceof AppError){
+      db=JSON.parse(snap);
+      if(e.db){lines.push(['ERROR:  '+e.message,'bad']);lines.push(['ROLLBACK;  -- nothing was saved','bad']);log=log.concat(lines);toast(false,'Rejected',e.message)}
+      else toast(false,'Check your input',e.message);
+      return false;
+    }
+    throw e;
+  }
+}
+function toast(ok,head,msg){
+  var t=$('#toast');t.className='toast'+(ok?'':' bad');t.innerHTML='<b>'+esc(head)+':</b>'+esc(msg);t.hidden=false;
+  clearTimeout(toastTimer);toastTimer=setTimeout(function(){t.hidden=true},5200);
+}
+
+/* ---------- helpers for the UI ---------- */
+function showById(id){return db.shows.find(function(s){return s.id===id})}
+function custName(id){var c=db.customers.find(function(x){return x.id===id});return c?c.name:'-'}
+function bookedSet(showId){var s={};db.bookedSeats.forEach(function(b){if(b.show===showId&&b.status==='BOOKED')s[b.seat]=true});return s}
+function snackTotal(){return db.items.reduce(function(t,i){return t+(ui.snacks[i.id]||0)*i.price},0)}
+
+/* ---------- rendering ---------- */
+function renderShows(){
+  $('#shows').innerHTML=db.shows.map(function(s){
+    var m=movie(s.movie),sc=SCREENS.find(function(x){return x.id===s.screen});
+    return '<button type="button" class="chip" data-show="'+s.id+'" aria-pressed="'+(s.id===ui.show)+'"><b>'+hhmm(s.start)+'</b> '+esc(m.title)+'<small>'+esc(sc.name)+' · '+inr(s.price)+' · ends '+hhmm(s.end)+'</small></button>';
+  }).join('');
+}
+function renderMap(){
+  var booked=bookedSet(ui.show),h='';
+  ROWS.forEach(function(r){
+    h+='<div class="seatrow"><span class="rowlab">'+r+'</span>';
+    for(var n=1;n<=PER_ROW;n++){
+      if(n===6)h+='<span></span>';
+      var id=r+n,isB=!!booked[id],isS=ui.sel.indexOf(id)>=0;
+      h+='<button type="button" class="seat'+(isB?' booked':'')+'" data-seat="'+id+'" aria-pressed="'+isS+'" aria-label="Seat '+id+(isB?', booked':isS?', selected':', free')+'" title="'+id+(isB?' booked':'')+'">'+n+'</button>';
+    }
+    h+='</div>';
+  });
+  $('#map').innerHTML=h;
+}
+function renderSnacks(){
+  $('#snacks').innerHTML=db.items.map(function(i){
+    var q=ui.snacks[i.id]||0;
+    return '<div class="snack"><div>'+esc(i.name)+'<small>'+inr(i.price)+' · stock '+i.stock+'</small></div><div class="step"><button type="button" data-snack="'+i.id+'" data-d="-1" aria-label="Fewer '+esc(i.name)+'">−</button><output>'+q+'</output><button type="button" data-snack="'+i.id+'" data-d="1" aria-label="More '+esc(i.name)+'">+</button></div></div>';
+  }).join('');
+}
+function renderSummary(){
+  var sh=showById(ui.show),n=ui.sel.length,t=n*sh.price,s=snackTotal();
+  $('#summary').innerHTML='<span>Seats <b>'+(n?ui.sel.slice().sort().join(', '):'none yet')+'</b></span><span>Tickets <b>'+n+' × '+inr(sh.price)+' = '+inr(t)+'</b></span><span>Snacks <b>'+inr(s)+'</b></span><span>Total <b>'+inr(t+s)+'</b></span>';
+}
+function renderSelects(){
+  var cs=$('#cust');cs.innerHTML=db.customers.map(function(c){return '<option value="'+c.id+'">'+esc(c.name)+'</option>'}).join('');cs.value=ui.cust;
+  $('#s-movie').innerHTML=MOVIES.map(function(m){return '<option value="'+m.id+'">'+esc(m.title)+' ('+m.dur+' min)</option>'}).join('');
+  $('#s-screen').innerHTML=SCREENS.map(function(s){return '<option value="'+s.id+'">'+esc(s.name)+'</option>'}).join('');
+}
+function renderCancel(keepRefund){
+  var sel=$('#c-book'),cur=sel.value;
+  sel.innerHTML=db.bookings.map(function(b){var s=showById(b.show);return '<option value="'+b.id+'">#'+b.id+' · '+esc(custName(b.cust))+' · '+hhmm(s.start)+' · '+b.status+'</option>'}).join('')||'<option value="">No bookings</option>';
+  if(cur&&db.bookings.some(function(b){return String(b.id)===cur}))sel.value=cur;
+  var hrs=+$('#c-hours').value;$('#c-hours-val').textContent=hrs===0?'show started':hrs+' h';
+  var b=db.bookings.find(function(x){return String(x.id)===sel.value}),pay=b&&db.payments.find(function(p){return p.booking===b.id});
+  var pct=refundPercent(hrs),limit=pay?Math.round(pay.amount*pct)/100:0;
+  $('#policy').innerHTML='<span>Refund policy <b class="pct">'+pct+'%</b></span><span>Paid <b>'+(pay?inr(pay.amount):'-')+'</b></span><span>Allowed refund <b>'+inr(limit)+'</b></span>';
+  if(!keepRefund)$('#c-refund').value=limit;
+}
+function renderStats(){
+  var booked=db.bookedSeats.filter(function(b){return b.show===ui.show&&b.status==='BOOKED'}).length;
+  var gross=db.payments.reduce(function(t,p){return t+p.amount},0),ref=db.refunds.reduce(function(t,r){return t+r.amount},0);
+  var tix=db.tickets.filter(function(t){return t.status!=='VOID'}).length;
+  $('#stats').innerHTML=
+   '<div class="stat"><span>This show</span><b>'+booked+' / '+TOTAL+'</b></div>'+
+   '<div class="stat"><span>Occupancy</span><b>'+(100*booked/TOTAL).toFixed(1)+'%</b></div>'+
+   '<div class="stat"><span>Live tickets</span><b>'+tix+'</b></div>'+
+   '<div class="stat"><span>Gross</span><b>'+inr(gross)+'</b></div>'+
+   '<div class="stat"><span>Refunds</span><b class="neg">'+inr(ref)+'</b></div>'+
+   '<div class="stat"><span>Net</span><b>'+inr(gross-ref)+'</b></div>';
+}
+function tableData(name){
+  switch(name){
+    case 'booking':return {h:['booking_id','customer','screening','channel','status'],r:db.bookings.map(function(b){return [b.id,custName(b.cust),b.show,b.channel,b.status]}),s:4};
+    case 'booked_seat':return {h:['id','booking_id','screening','seat','status'],r:db.bookedSeats.map(function(b){return [b.id,b.booking,b.show,b.seat,b.status]}),s:4};
+    case 'ticket':return {h:['ticket_id','ticket_code','seat','price','status'],r:db.tickets.map(function(t){return [t.id,t.code,t.seat,f2(t.price),t.status]}),s:4};
+    case 'payment':return {h:['payment_id','booking_id','order_id','amount','status'],r:db.payments.map(function(p){return [p.id,p.booking||'NULL',p.order||'NULL',f2(p.amount),p.status]}),s:4};
+    case 'concession_item':return {h:['item_id','item_name','unit_price','stock_qty'],r:db.items.map(function(i){return [i.id,i.name,f2(i.price),i.stock]}),s:-1};
+    case 'order_item':return {h:['order_id','item','quantity','unit_price'],r:db.orderItems.map(function(o){return [o.order,o.name,o.qty,f2(o.price)]}),s:-1};
+    case 'cancellation':return {h:['cancellation_id','booking_id','cancelled_by','hours_before'],r:db.cancellations.map(function(c){return [c.id,c.booking,c.by,c.hours]}),s:-1};
+    default:return {h:['refund_id','cancellation_id','payment_id','refund_amount','status'],r:db.refunds.map(function(r){return [r.id,r.canc,r.payment,f2(r.amount),r.status]}),s:4};
+  }
+}
+function renderTabs(){
+  $('#tabs').innerHTML=TABS.map(function(t){return '<button type="button" role="tab" class="tab" data-tab="'+t+'" aria-selected="'+(t===ui.tab)+'">'+t+'</button>'}).join('');
+}
+function renderTable(){
+  var d=tableData(ui.tab),prev=prevLen[ui.tab]||0,html='';
+  if(!d.r.length){$('#tablewrap').innerHTML='<div class="empty">No rows in '+ui.tab+' yet.</div>';prevLen[ui.tab]=0;return}
+  html='<table><thead><tr>'+d.h.map(function(x){return '<th>'+x+'</th>'}).join('')+'</tr></thead><tbody>';
+  d.r.forEach(function(row,i){
+    html+='<tr'+(i>=prev&&prev>0?' class="fresh"':'')+'>'+row.map(function(c,j){
+      var cls='';if(j===d.s){cls=/CANCELLED|VOID|RELEASED/.test(c)?' class="bad"':/CONFIRMED|ISSUED|BOOKED|SUCCESS|COMPLETED/.test(c)?' class="ok"':''}
+      return '<td'+cls+'>'+esc(c)+'</td>'}).join('')+'</tr>';
+  });
+  $('#tablewrap').innerHTML=html+'</tbody></table>';
+  prevLen[ui.tab]=d.r.length;
+}
+function renderLog(){
+  var el=$('#log');
+  el.innerHTML=log.length?log.slice(-120).map(function(l){return '<div class="'+(l[1]||'')+'">'+esc(l[0])+'</div>'}).join(''):'<div class="dim">-- Actions you take appear here as SQL.</div>';
+  el.scrollTop=el.scrollHeight;
+}
+function renderAll(){
+  renderShows();renderMap();renderSnacks();renderSummary();renderSelects();renderCancel();renderStats();renderTabs();renderTable();renderLog();
+}
+
+/* ---------- events ---------- */
+document.addEventListener('click',function(e){
+  var t=e.target.closest('button');if(!t)return;
+  if(t.dataset.show){ui.show=+t.dataset.show;ui.sel=[];renderShows();renderMap();renderSummary();renderStats();return}
+  if(t.dataset.seat){
+    var seat=t.dataset.seat,booked=bookedSet(ui.show);
+    if(booked[seat]){
+      /* try to book an already booked seat: the database refuses and rolls back */
+      txn(function(lines){doBook(db,{cust:ui.cust,show:ui.show,seats:[seat],method:$('#method').value,snacks:{}},lines)},'');
+      ui.tab='booked_seat';renderTabs();renderTable();renderLog();return;
+    }
+    var i=ui.sel.indexOf(seat);if(i>=0)ui.sel.splice(i,1);else ui.sel.push(seat);
+    renderMap();renderSummary();return;
+  }
+  if(t.dataset.snack){var k=+t.dataset.snack,v=(ui.snacks[k]||0)+(+t.dataset.d);ui.snacks[k]=Math.max(0,v);renderSnacks();renderSummary();return}
+  if(t.dataset.tab){ui.tab=t.dataset.tab;renderTabs();renderTable();return}
+});
+$('#cust').addEventListener('change',function(){ui.cust=+this.value});
+$('#book').addEventListener('click',function(){
+  var seats=ui.sel.slice().sort(),snacks=Object.assign({},ui.snacks);
+  var ok=txn(function(lines){doBook(db,{cust:ui.cust,show:ui.show,seats:seats,method:$('#method').value,snacks:snacks},lines)},
+    (seats.length?seats.length+' seat(s) booked and tickets issued':'Snack order saved')+'.');
+  if(ok){ui.sel=[];ui.snacks={};ui.tab=seats.length?'booking':'order_item'}else{ui.tab='booked_seat'}
+  renderAll();
+});
+$('#sched').addEventListener('click',function(){
+  var tm=$('#s-time').value.split(':'),start=tm.length===2?(+tm[0])*60+(+tm[1]):NaN;
+  if(isNaN(start)){toast(false,'Check your input','Enter a start time.');return}
+  var p={movie:+$('#s-movie').value,screen:+$('#s-screen').value,start:start,price:parseFloat($('#s-price').value)};
+  var ok=txn(function(lines){doSchedule(db,p,lines)},'Show scheduled at '+hhmm(start)+'.');
+  if(ok)ui.show=db.shows[db.shows.length-1].id,ui.sel=[];
+  renderAll();
+});
+$('#c-book').addEventListener('change',function(){renderCancel()});
+$('#c-hours').addEventListener('input',function(){renderCancel()});
+$('#cancel').addEventListener('click',function(){
+  var id=+$('#c-book').value;if(!id){toast(false,'Check your input','There is no booking to cancel.');return}
+  var p={booking:id,hours:+$('#c-hours').value,refund:parseFloat($('#c-refund').value)};
+  var ok=txn(function(lines){doCancel(db,p,lines)},'Booking '+id+' cancelled. Seats released and tickets voided.');
+  ui.tab=ok?'refund':'cancellation';renderAll();
+});
+$('#reset').addEventListener('click',function(){init();toast(true,'Reset','Sample data restored.')});
+
+function init(){
+  db=freshDb();log=[];prevLen={};
+  ui={show:1,cust:4,sel:['B4','B5'],snacks:{2:1},tab:'booking'};
+  renderAll();
+  TABS.forEach(function(t){prevLen[t]=tableData(t).r.length});
+}
+init();
+})();
+</script>
+<script>
+(function(){
+var sl=[].slice.call(document.querySelectorAll('.slide')),cur=0,dots=document.getElementById('dots'),names=['title','problem','glance','parts','flow','rules','quality','model','reports','status'];
+sl.forEach(function(s,i){var b=document.createElement('button');b.type='button';b.setAttribute('aria-label','Slide '+(i+1));b.onclick=function(){go(i)};dots.appendChild(b)});
+function go(i){cur=Math.max(0,Math.min(sl.length-1,i));sl.forEach(function(s,k){s.classList.toggle('on',k===cur);dots.children[k].classList.toggle('on',k===cur)});document.getElementById('cnt').textContent=(cur+1)+' / '+sl.length;document.getElementById('pv').disabled=cur===0;document.getElementById('nx').disabled=cur===sl.length-1;window.scrollTo(0,0);try{history.replaceState(null,'','#'+names[cur])}catch(e){}}
+document.getElementById('pv').onclick=function(){go(cur-1)};document.getElementById('nx').onclick=function(){go(cur+1)};
+document.addEventListener('keydown',function(e){var t=e.target.tagName;if(t==='INPUT'||t==='SELECT'||t==='TEXTAREA')return;if(e.key==='ArrowRight'||e.key==='PageDown')go(cur+1);if(e.key==='ArrowLeft'||e.key==='PageUp')go(cur-1)});
+var h=(location.hash||'').slice(1),k=names.indexOf(h);go(k>=0?k:0);
+})();</script>
+
+</body></html>
